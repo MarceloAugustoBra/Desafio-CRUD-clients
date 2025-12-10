@@ -37,4 +37,9 @@ public class ClientController {
         dto = clientService.insert(dto);
         return dto;
     }
+
+    @DeleteMapping(value = "/{id}")
+    public void delete(Long id){
+        clientService.delete(id);
+    }
 }
