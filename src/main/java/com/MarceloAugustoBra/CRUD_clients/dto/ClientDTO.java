@@ -1,16 +1,29 @@
 package com.MarceloAugustoBra.CRUD_clients.dto;
 
 import com.MarceloAugustoBra.CRUD_clients.entities.Client;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
 
 public class ClientDTO {
 
     private Long id;
+
+    @Size(min = 3, max = 80, message = "O nome precisa ter entre 3 e 80 caracteres.")
+    @NotBlank(message = "Campo requerido.")
     private String name;
+
+    @Size(min = 11, max = 11, message = "É obrigatório 11 caracteres para o campo CPF.")
     private String cpf;
+
+    @DecimalMin(value = "1518.00", message = "O salário deve ser no mínimo R$1.518,00")
     private Double income;
+
+    @Past(message = "A data deve ser antes de hoje.")
     private LocalDate birthDate;
+
+    //fiz assim pra não ficar com o valor null.
+    @NotNull(message = "O campo não pode ser nulo, se não possui filhos, informe 0")
     private Integer children;
 
     public ClientDTO(){}
